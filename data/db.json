@@ -1,0 +1,125 @@
+{
+  "users": [
+    {
+      "id": "teacher-1",
+      "role": "teacher",
+      "name": "Demo Sir"
+    },
+    {
+      "id": "student-1",
+      "role": "student",
+      "name": "Demo Student"
+    },
+    {
+      "id": "student-31ceb0fb8375",
+      "role": "student",
+      "name": "Demo Sir"
+    }
+  ],
+  "classes": [
+    {
+      "id": "class-1",
+      "teacherId": "teacher-1",
+      "title": "Chemistry - Organic Basics",
+      "time": "Today, 7:00 PM",
+      "link": "https://meet.example.com/classbridge-101",
+      "createdAt": "2026-05-29T17:25:35.477Z"
+    },
+    {
+      "id": "class-2",
+      "teacherId": "teacher-1",
+      "title": "Math - Trigonometry Doubts",
+      "time": "Tomorrow, 6:30 PM",
+      "link": "https://meet.example.com/classbridge-102",
+      "createdAt": "2026-05-29T17:25:35.478Z"
+    }
+  ],
+  "classRequests": [
+    {
+      "id": "join-1",
+      "classId": "class-1",
+      "studentId": "student-1",
+      "status": "waiting",
+      "createdAt": "2026-05-29T17:25:35.478Z"
+    }
+  ],
+  "tests": [
+    {
+      "id": "test-1",
+      "teacherId": "teacher-1",
+      "name": "Algebra Speed Test",
+      "fee": 99,
+      "time": "Today, 8:30 PM",
+      "question": "A train travels 120 km in 2 hours. What is its average speed?",
+      "status": "open",
+      "createdAt": "2026-05-29T17:25:35.478Z"
+    },
+    {
+      "id": "test-2",
+      "teacherId": "teacher-1",
+      "name": "Physics MCQ Practice",
+      "fee": 149,
+      "time": "Saturday, 5:00 PM",
+      "question": "What is Newton's second law of motion?",
+      "status": "scheduled",
+      "createdAt": "2026-05-29T17:25:35.478Z"
+    }
+  ],
+  "testRequests": [
+    {
+      "id": "test-request-1",
+      "testId": "test-1",
+      "studentId": "student-1",
+      "paymentStatus": "paid",
+      "permissionStatus": "permitted",
+      "amount": 99,
+      "createdAt": "2026-05-29T17:25:35.478Z"
+    }
+  ],
+  "assignments": [
+    {
+      "id": "assignment-1",
+      "teacherId": "teacher-1",
+      "title": "Organic Chemistry Worksheet",
+      "dueDate": "Tomorrow, 9:00 PM",
+      "instructions": "Complete questions 1 to 10 from the worksheet and show all steps.",
+      "createdAt": "2026-05-29T17:25:35.478Z"
+    }
+  ],
+  "assignmentSubmissions": [
+    {
+      "id": "submission-1",
+      "assignmentId": "assignment-1",
+      "studentId": "student-1",
+      "answer": "I completed questions 1 to 10 and attached my working notes.",
+      "status": "submitted",
+      "feedback": "",
+      "createdAt": "2026-05-29T17:25:35.478Z",
+      "reviewedAt": ""
+    }
+  ],
+  "notifications": [
+    {
+      "id": "note-e439569eee22",
+      "userId": "student-31ceb0fb8375",
+      "message": "Welcome. Request class entry or test permission from your dashboard.",
+      "createdAt": "2026-05-29T17:49:21.623Z",
+      "read": false
+    },
+    {
+      "id": "note-1",
+      "userId": "student-1",
+      "message": "New test available: Algebra Speed Test. Request admit and complete payment.",
+      "createdAt": "2026-05-29T17:25:35.478Z",
+      "read": false
+    },
+    {
+      "id": "note-2",
+      "userId": "student-1",
+      "message": "Chemistry class starts Today at 7:00 PM. Join link opens after teacher approval.",
+      "createdAt": "2026-05-29T17:25:35.478Z",
+      "read": false
+    }
+  ],
+  "examFlags": []
+}

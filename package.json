@@ -1,0 +1,13 @@
+{
+  "name": "classbridge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack online class, test, payment permission, and assignment prototype.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

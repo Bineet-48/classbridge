@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ClassBridge - Online Classes, Tests, Payments</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#app" aria-label="ClassBridge home">
+        <span class="brand-mark">CB</span>
+        <span>ClassBridge</span>
+      </a>
+      <nav aria-label="Primary">
+        <a href="#teacher">Teacher</a>
+        <a href="#student">Student</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#exam">Exam Mode</a>
+        <a href="#pricing">Payments</a>
+      </nav>
+      <div class="auth-strip" aria-label="Account switcher">
+        <span class="login-sign">Login as</span>
+        <select id="loginRole" aria-label="User role">
+          <option value="teacher">Teacher</option>
+          <option value="student">Student</option>
+        </select>
+        <button class="ghost-btn" id="loginBtn">Sign in</button>
+      </div>
+    </header>
+
+    <main id="app">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live classes, paid tests, teacher approval</p>
+          <h1>ClassBridge</h1>
+          <p>
+            A Teachmint-style learning platform prototype where teachers schedule classes,
+            publish tests, admit students to meetings, collect test payments, and control access.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-btn" data-scroll="#teacher">Manage as Teacher</button>
+            <button class="secondary-btn" data-scroll="#student">Join as Student</button>
+          </div>
+          <div class="metric-row" aria-label="Platform highlights">
+            <span id="currentUserLabel"><strong>Guest</strong> choose login</span>
+            <span><strong>18</strong> students</span>
+            <span><strong>4</strong> scheduled classes</span>
+            <span><strong>3</strong> payment requests</span>
+          </div>
+        </div>
+        <figure class="hero-media">
+          <img src="assets/teaching-platform-hero.png" alt="Modern online teaching dashboard illustration">
+        </figure>
+      </section>
+
+      <section class="workspace" aria-label="Platform dashboard">
+        <aside class="sidebar">
+          <button class="nav-chip active" data-panel="overview">Overview</button>
+          <button class="nav-chip" data-panel="classes">Classes</button>
+          <button class="nav-chip" data-panel="tests">Tests</button>
+          <button class="nav-chip" data-panel="assignments">Assignments</button>
+          <button class="nav-chip" data-panel="admissions">Admissions</button>
+          <button class="nav-chip" data-panel="payments">Payments</button>
+        </aside>
+
+        <section class="dashboard" id="teacher">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Teacher command center</p>
+              <h2>Run class, test, admission, and payment from one place</h2>
+            </div>
+            <button class="primary-btn" id="publishTestBtn" data-teacher-action>Publish test notification</button>
+          </div>
+
+          <div class="stat-grid">
+            <article>
+              <span>Pending joins</span>
+              <strong id="pendingJoins">2</strong>
+            </article>
+            <article>
+              <span>Paid test admits</span>
+              <strong id="paidAdmits">1</strong>
+            </article>
+            <article>
+              <span>Focus flags</span>
+              <strong id="focusFlags">0</strong>
+            </article>
+          </div>
+
+          <div class="panel-grid">
+            <section class="tool-panel" id="panel-classes" data-panel-section="overview classes">
+              <div class="panel-title">
+                <h3>Class Schedule</h3>
+                <button class="icon-btn" id="addClassBtn" data-teacher-action aria-label="Add class">+</button>
+              </div>
+              <form class="compact-form" id="classForm">
+                <label>
+                  Class title
+                  <input id="classTitle" type="text" value="Physics - Motion Revision">
+                </label>
+                <label>
+                  Time
+                  <input id="classTime" type="datetime-local">
+                </label>
+                <label>
+                  Meeting link
+                  <input id="meetingLink" type="url" value="https://meet.example.com/classbridge-101">
+                </label>
+              </form>
+              <div class="list" id="classList"></div>
+            </section>
+
+            <section class="tool-panel" id="panel-admissions" data-panel-section="overview admissions">
+              <div class="panel-title">
+                <h3>Meeting Admission</h3>
+                <span class="status-pill">Teacher permission required</span>
+              </div>
+              <div class="join-box">
+                <span class="join-link" id="shareLink">https://meet.example.com/classbridge-101</span>
+                <button class="secondary-btn" id="copyLinkBtn">Copy</button>
+              </div>
+              <div class="list" id="joinRequests"></div>
+            </section>
+
+            <section class="tool-panel" id="panel-tests" data-panel-section="overview tests">
+              <div class="panel-title">
+                <h3>Test Builder</h3>
+                <span class="status-pill accent">Paid test</span>
+              </div>
+              <form class="compact-form" id="testForm">
+                <label>
+                  Test name
+                  <input id="testName" type="text" value="Algebra Speed Test">
+                </label>
+                <label>
+                  Fee for teacher
+                  <input id="testFee" type="number" min="0" value="99">
+                </label>
+                <label>
+                  Start time
+                  <input id="testTime" type="datetime-local">
+                </label>
+                <label>
+                  Question
+                  <textarea id="testQuestion">A train travels 120 km in 2 hours. What is its average speed?</textarea>
+                </label>
+                <button class="primary-btn" type="submit">Add test</button>
+              </form>
+              <div class="list" id="testList"></div>
+            </section>
+
+            <section class="tool-panel" id="panel-payments" data-panel-section="overview payments">
+              <div class="panel-title">
+                <h3>Payment & Test Admit</h3>
+                <span class="status-pill">Manual approval</span>
+              </div>
+              <div class="list" id="paymentRequests"></div>
+            </section>
+
+            <section class="tool-panel" id="panel-assignments" data-panel-section="overview assignments">
+              <div class="panel-title">
+                <h3>Homework Assignment</h3>
+                <span class="status-pill">Students submit online</span>
+              </div>
+              <form class="compact-form" id="assignmentForm">
+                <label>
+                  Assignment title
+                  <input id="assignmentTitle" type="text" value="Organic Chemistry Worksheet">
+                </label>
+                <label>
+                  Due date
+                  <input id="assignmentDue" type="datetime-local">
+                </label>
+                <label>
+                  Instructions
+                  <textarea id="assignmentInstructions">Complete questions 1 to 10 from the worksheet and show all steps.</textarea>
+                </label>
+                <button class="primary-btn" type="submit">Give homework</button>
+              </form>
+              <div class="list" id="assignmentList"></div>
+            </section>
+
+            <section class="tool-panel" id="panel-submissions" data-panel-section="overview assignments">
+              <div class="panel-title">
+                <h3>Homework Submissions</h3>
+                <span class="status-pill accent">Teacher review</span>
+              </div>
+              <div class="list" id="submissionList"></div>
+            </section>
+          </div>
+        </section>
+      </section>
+
+      <section class="student-zone" id="student">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Student side</p>
+            <h2>Request class entry, pay for tests, and wait for teacher approval</h2>
+          </div>
+          <button class="secondary-btn" id="studentJoinBtn" data-student-action>Request to join class</button>
+        </div>
+        <div class="student-grid">
+          <section class="tool-panel">
+            <h3>Notifications</h3>
+            <div class="list" id="notifications"></div>
+          </section>
+          <section class="tool-panel">
+            <h3>Available Tests</h3>
+            <div class="list" id="studentTests"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="student-zone" id="assignments">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Homework</p>
+            <h2>Students can submit assignments and teachers can review them</h2>
+          </div>
+        </div>
+        <div class="student-grid">
+          <section class="tool-panel">
+            <h3>My Assignments</h3>
+            <div class="list" id="studentAssignments"></div>
+          </section>
+          <section class="tool-panel">
+            <h3>My Homework Status</h3>
+            <div class="list" id="studentSubmissions"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="exam-zone" id="exam">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Exam mode</p>
+            <h2>Screenshot deterrence, focus tracking, and teacher visibility</h2>
+          </div>
+          <button class="danger-btn" id="startExamBtn">Start secure exam demo</button>
+        </div>
+        <div class="exam-shell" id="examShell" aria-live="polite">
+          <div class="watermark">ClassBridge Secure Exam - Student ID STU-204</div>
+          <div>
+            <span class="status-pill">Locked mode inactive</span>
+            <h3>Question 1</h3>
+            <p id="examQuestion">A train travels 120 km in 2 hours. What is its average speed?</p>
+          </div>
+          <label class="answer-box">
+            Answer
+            <textarea placeholder="Type your answer here"></textarea>
+          </label>
+          <p class="exam-note">
+            The demo blocks common screenshot shortcuts and records tab switching. Real exam security
+            also needs a desktop app, proctoring, or device policy.
+          </p>
+        </div>
+        <section class="tool-panel exam-log">
+          <h3>Teacher Exam Warnings</h3>
+          <div class="list" id="examFlags"></div>
+        </section>
+      </section>
+
+      <section class="pricing" id="pricing">
+        <div>
+          <p class="eyebrow">Payment flow</p>
+          <h2>Teacher receives the test fee before permitting the exam</h2>
+        </div>
+        <div class="flow">
+          <span>Student requests admit</span>
+          <span>Teacher reviews</span>
+          <span>Payment collected</span>
+          <span>Exam permission granted</span>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
